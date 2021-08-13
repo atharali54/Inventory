@@ -46,83 +46,257 @@ class HomeScreenState extends State<HomeScreen> {
                 epcification: epcification.text)));
   }
 
+  //final hintFont = TextStyle(fontSize: 14);
+  String dropdownvalue = 'Select Category';
+  var itemsCat = [
+    'Select Category',
+    'Laptop',
+    'Printer',
+    'Mouse',
+    'Keyboard',
+    'Scanner',
+    'LED'
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
+      padding: EdgeInsets.all(20),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         //  mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  controller: prodName,
-                  autocorrect: true,
-                  decoration: InputDecoration(hintText: 'Product Name'),
+          Container(
+            width: 420,
+            padding: EdgeInsets.all(2),
+            // height: 30,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    child: Text(' Category:'),
+                    padding: EdgeInsets.only(right: 5),
+                  ),
                 ),
-              ),
-              Expanded(
-                child: TextField(
+                Container(
+                  width: 300,
+                  height: 60,
+                  // decoration: BoxDecoration(
+                  //   borderRadius: BorderRadius.circular(2.0),
+                  //   border: Border.all(
+                  //     color: Colors.red,
+                  //     style: BorderStyle.solid,
+                  //   ),
+                  // ),
+                  child: DropdownButton(
+                    iconSize: 20,
+                    value: dropdownvalue,
+                    icon: Icon(Icons.keyboard_arrow_down),
+                    items: itemsCat.map((String items) {
+                      return DropdownMenuItem(value: items, child: Text(items));
+                    }).toList(),
+                    onChanged: (String newValue) {
+                      setState(() {
+                        dropdownvalue = newValue;
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            width: 420,
+            padding: EdgeInsets.all(2),
+            height: 30,
+            child: Row(
+              children: [
+                Padding(
+                  child: Text('Product Name:'),
+                  padding: EdgeInsets.only(right: 5),
+                ),
+                Expanded(
+                  child: TextField(
+                    controller: prodName,
+                    autocorrect: true,
+                    decoration: InputDecoration(
+                        //hintText: 'Product Name',
+                        //hintStyle: hintFont,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(4))),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            width: 420,
+            padding: EdgeInsets.all(2),
+            height: 30,
+            child: Row(
+              children: [
+                Padding(
+                  child: Text('Ref. No. in Stock Register:'),
+                  padding: EdgeInsets.only(right: 5),
+                ),
+                Expanded(
+                    child: TextField(
+                  controller: rfNo,
+                  autocorrect: true,
+                  decoration: InputDecoration(
+                      //hintText: 'Product Name',
+                      // hintStyle: hintFont,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4))),
+                )),
+              ],
+            ),
+          ),
+          Container(
+            width: 420,
+            padding: EdgeInsets.all(2),
+            height: 30,
+            child: Row(
+              children: [
+                Padding(
+                  child: Text('Product id:'),
+                  padding: EdgeInsets.only(right: 5),
+                ),
+                Expanded(
+                    child: TextField(
                   controller: prodId,
                   autocorrect: true,
-                  decoration: InputDecoration(hintText: 'Product id'),
+                  decoration: InputDecoration(
+                      //hintText: 'Product Name',
+                      // hintStyle: hintFont,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4))),
+                )),
+              ],
+            ),
+          ),
+          Container(
+            width: 420,
+            padding: EdgeInsets.all(2),
+            height: 30,
+            child: Row(
+              children: [
+                Padding(
+                  child: Text('Warranty Period:'),
+                  padding: EdgeInsets.only(right: 5),
                 ),
-              )
-            ],
+                Expanded(
+                    child: TextField(
+                  controller: warrentyPeriod,
+                  autocorrect: true,
+                  decoration: InputDecoration(
+                      //hintText: 'Product Name',
+                      // hintStyle: hintFont,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4))),
+                )),
+              ],
+            ),
           ),
-          Row(
-            children: [
-              Expanded(
-                  child: TextField(
-                controller: rfNo,
-                autocorrect: true,
-                decoration:
-                    InputDecoration(hintText: 'Ref. No. in Stock Register'),
-              )),
-              Expanded(
-                  child: TextField(
-                controller: warrentyPeriod,
-                autocorrect: true,
-                decoration: InputDecoration(hintText: 'Warranty Period'),
-              ))
-            ],
+          Container(
+            width: 420,
+            padding: EdgeInsets.all(2),
+            height: 30,
+            child: Row(
+              children: [
+                Padding(
+                  child: Text('Purchased From:'),
+                  padding: EdgeInsets.only(right: 5),
+                ),
+                Expanded(
+                    child: TextField(
+                  controller: purFrom,
+                  autocorrect: true,
+                  decoration: InputDecoration(
+                      //hintText: 'Product Name',
+                      // hintStyle: hintFont,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4))),
+                )),
+              ],
+            ),
           ),
-          Row(
-            children: [
-              Expanded(
-                  child: TextField(
-                controller: amcPeriod,
-                autocorrect: true,
-                decoration: InputDecoration(hintText: 'AMC Period'),
-              )),
-              Expanded(
-                  child: TextField(
-                controller: purFrom,
-                autocorrect: true,
-                decoration: InputDecoration(hintText: 'Purchased From'),
-              ))
-            ],
+          Container(
+            width: 420,
+            padding: EdgeInsets.all(2),
+            height: 30,
+            child: Row(
+              children: [
+                Padding(
+                  child: Text('AMC Period:'),
+                  padding: EdgeInsets.only(right: 5),
+                ),
+                Expanded(
+                    child: TextField(
+                  controller: amcPeriod,
+                  autocorrect: true,
+                  decoration: InputDecoration(
+                      //hintText: 'Product Name',
+                      // hintStyle: hintFont,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4))),
+                )),
+              ],
+            ),
           ),
-          Row(
-            children: [
-              Expanded(
-                  child: TextField(
-                controller: price,
-                autocorrect: true,
-                decoration: InputDecoration(hintText: 'Price'),
-              )),
-              Expanded(
-                  child: TextField(
-                controller: epcification,
-                autocorrect: true,
-                decoration: InputDecoration(hintText: 'Specification'),
-              ))
-            ],
+          Container(
+            width: 420,
+            padding: EdgeInsets.all(2),
+            height: 30,
+            child: Row(
+              children: [
+                Padding(
+                  child: Text('Price:'),
+                  padding: EdgeInsets.only(right: 5),
+                ),
+                Expanded(
+                    child: TextField(
+                  controller: price,
+                  autocorrect: true,
+                  decoration: InputDecoration(
+                      //hintText: 'Product Name',
+                      // hintStyle: hintFont,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4))),
+                )),
+              ],
+            ),
           ),
-          ElevatedButton(
-            onPressed: () => getItemAndNavigate(context),
-            child: Text('Generate Bill'),
+          Container(
+            width: 420,
+            padding: EdgeInsets.all(2),
+            height: 30,
+            child: Row(
+              children: [
+                Padding(
+                  child: Text('Price:'),
+                  padding: EdgeInsets.only(right: 5),
+                ),
+                Expanded(
+                    child: TextField(
+                  controller: epcification,
+                  autocorrect: true,
+                  decoration: InputDecoration(
+                      //hintText: 'Product Name',
+                      // hintStyle: hintFont,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4))),
+                )),
+              ],
+            ),
+          ),
+          Container(
+            child: ElevatedButton(
+              onPressed: () => getItemAndNavigate(context),
+              child: Text('Submit'),
+            ),
           ),
         ],
       ),
@@ -174,52 +348,52 @@ class SecondScreen extends StatelessWidget {
               Center(
                   child: Text(
                 'Product Name = ' + prodName,
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 12),
                 textAlign: TextAlign.center,
               )),
               Center(
                   child: Text(
                 'Product id = ' + prodId,
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 12),
                 textAlign: TextAlign.center,
               )),
               Center(
                   child: Text(
                 'rfNo = ' + rfNo,
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 12),
                 textAlign: TextAlign.center,
               )),
 
               Center(
                   child: Text(
                 'Warrenty Period = ' + warrentyPeriod,
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 12),
                 textAlign: TextAlign.center,
               )),
               Center(
                   child: Text(
                 'AMC Period = ' + amcPeriod,
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 12),
                 textAlign: TextAlign.center,
               )),
 
               Center(
                   child: Text(
                 'Product id = ' + purFrom,
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 12),
                 textAlign: TextAlign.center,
               )),
               Center(
                   child: Text(
                 'Product id = ' + price,
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 12),
                 textAlign: TextAlign.center,
               )),
 
               Center(
                   child: Text(
                 'Product id = ' + epcification,
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 12),
                 textAlign: TextAlign.center,
               )),
               // Center(
@@ -233,7 +407,7 @@ class SecondScreen extends StatelessWidget {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => HomePage()));
                 },
-                child: Text('Log Out'),
+                child: Text(''),
               )
             ]));
   }

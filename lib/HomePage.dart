@@ -4,16 +4,16 @@ import 'package:inventry/ItemCategories.dart';
 import 'package:inventry/arun.dart';
 
 class HomePage extends StatelessWidget {
-  final gridtitle = TextStyle(fontSize: 14, color: Colors.green);
+  final gridtitle = TextStyle(fontSize: 14, color: Colors.brown);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: DrawerMenu(),
       appBar: AppBar(
-        title: Text('Home 1 '),
+        title: Text('Home'),
       ),
       body: Container(
-        color: Colors.green[100],
+        color: Colors.brown[100],
         child: Column(children: <Widget>[
           Expanded(
             flex: 1,
@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
                   child: Text(
                     'Stock Inventry',
                     style: TextStyle(
-                        color: Colors.green,
+                        color: Colors.brown,
                         fontSize: 18,
                         fontWeight: FontWeight.bold),
                   ),
@@ -132,7 +132,7 @@ class HomePage extends StatelessWidget {
               context, MaterialPageRoute(builder: (context) => HomePage()));
         },
         child: Icon(Icons.search),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.brown,
       ),
     );
   }
@@ -155,7 +155,7 @@ class MyContainer extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(myicon, size: 25, color: Colors.green),
+          Icon(myicon, size: 25, color: Colors.brown),
           Text(tittle, textAlign: TextAlign.center)
         ],
       ),
