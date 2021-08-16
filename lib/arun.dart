@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:inventry/HomePage.dart';
+import 'package:date_time_picker/date_time_picker.dart';
 
-class BillDetails extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text("Add Items")),
-        body: Center(child: HomeScreen()));
-  }
-}
-
-class HomeScreen extends StatefulWidget {
+class BillDetails extends StatefulWidget {
   HomeScreenState createState() => HomeScreenState();
 }
 
-class HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<BillDetails> {
   // final name = TextEditingController();
   // final phoneNumber = TextEditingController();
   // final studentClass = TextEditingController();
@@ -57,250 +49,341 @@ class HomeScreenState extends State<HomeScreen> {
     'Scanner',
     'LED'
   ];
+  String dropdownvalue2 = 'Stock Register';
+  var stockReg = [
+    'Stock Register',
+    'Consumable',
+    'Non Consumable',
+    'Both',
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text('Add'),
+        ),
         body: SingleChildScrollView(
-      padding: EdgeInsets.all(20),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        //  mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Container(
-            width: 420,
-            padding: EdgeInsets.all(2),
-            // height: 30,
-            child: Row(
-              children: [
-                Expanded(
-                  child: Padding(
-                    child: Text(' Category:'),
-                    padding: EdgeInsets.only(right: 5),
-                  ),
+          padding: EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            //  mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Container(
+                  padding: EdgeInsets.all(4),
+                  color: Colors.brown,
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  child: Text(
+                    'Enter Stock',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  )),
+              Container(
+                width: 420,
+                padding: EdgeInsets.all(2),
+                // height: 30,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        child: Text(' Category:'),
+                        padding: EdgeInsets.only(right: 5),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 4),
+                      decoration: new BoxDecoration(),
+                      height: 60,
+                      child: DropdownButton(
+                        value: dropdownvalue,
+                        icon: Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Colors.brown,
+                        ),
+                        items: itemsCat.map((String items) {
+                          return DropdownMenuItem(
+                              value: items,
+                              child: Text(
+                                items,
+                                style: TextStyle(fontSize: 14),
+                              ));
+                        }).toList(),
+                        onChanged: (String newValue) {
+                          setState(() {
+                            dropdownvalue = newValue;
+                          });
+                        },
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 4),
+                      decoration: new BoxDecoration(
+                          // borderRadius: BorderRadius.circular(20.0),
+                          // color: Colors.brown[100],
+                          // boxShadow: [
+                          //   BoxShadow(
+                          //     blurRadius: 10,
+                          //     color: Colors.black26,
+                          //   )
+                          // ],
+                          ),
+
+                      // decoration: BoxDecoration(
+                      //   borderRadius: BorderRadius.circular(2.0),
+                      //   border: Border.all(
+                      //     color: Colors.red,
+                      //     style: BorderStyle.solid,
+                      //   ),
+                      // ),
+                      child: DropdownButton(
+                        value: dropdownvalue2,
+                        icon: Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Colors.brown,
+                        ),
+                        items: stockReg.map((String items) {
+                          return DropdownMenuItem(
+                              value: items,
+                              child: Text(
+                                items,
+                                style: TextStyle(fontSize: 14),
+                              ));
+                        }).toList(),
+                        onChanged: (String newValue) {
+                          setState(() {
+                            dropdownvalue2 = newValue;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-                Container(
-                  width: 300,
-                  height: 60,
-                  // decoration: BoxDecoration(
-                  //   borderRadius: BorderRadius.circular(2.0),
-                  //   border: Border.all(
-                  //     color: Colors.red,
-                  //     style: BorderStyle.solid,
-                  //   ),
-                  // ),
-                  child: DropdownButton(
-                    iconSize: 20,
-                    value: dropdownvalue,
-                    icon: Icon(Icons.keyboard_arrow_down),
-                    items: itemsCat.map((String items) {
-                      return DropdownMenuItem(value: items, child: Text(items));
-                    }).toList(),
-                    onChanged: (String newValue) {
-                      setState(() {
-                        dropdownvalue = newValue;
-                      });
-                    },
-                  ),
+              ),
+              Container(
+                width: 420,
+                padding: EdgeInsets.all(2),
+                height: 30,
+                child: Row(
+                  children: [
+                    Padding(
+                      child: Text('Product Name:'),
+                      padding: EdgeInsets.only(right: 5),
+                    ),
+                    Expanded(
+                      child: TextField(
+                        controller: prodName,
+                        autocorrect: true,
+                        decoration: InputDecoration(
+                            //hintText: 'Product Name',
+                            //hintStyle: hintFont,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(4))),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              Container(
+                width: 420,
+                padding: EdgeInsets.all(2),
+                height: 30,
+                child: Row(
+                  children: [
+                    Padding(
+                      child: Text('Ref. No. in Stock Register:'),
+                      padding: EdgeInsets.only(right: 5),
+                    ),
+                    Expanded(
+                        child: TextField(
+                      controller: rfNo,
+                      autocorrect: true,
+                      decoration: InputDecoration(
+                          //hintText: 'Product Name',
+                          // hintStyle: hintFont,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4))),
+                    )),
+                  ],
+                ),
+              ),
+              Container(
+                width: 420,
+                padding: EdgeInsets.all(2),
+                height: 30,
+                child: Row(
+                  children: [
+                    Padding(
+                      child: Text('Product id:'),
+                      padding: EdgeInsets.only(right: 5),
+                    ),
+                    Expanded(
+                        child: TextField(
+                      controller: prodId,
+                      autocorrect: true,
+                      decoration: InputDecoration(
+                          //hintText: 'Product Name',
+                          // hintStyle: hintFont,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4))),
+                    )),
+                  ],
+                ),
+              ),
+              Container(
+                width: 420,
+                padding: EdgeInsets.all(2),
+                height: 30,
+                child: Row(
+                  children: [
+                    Padding(
+                      child: Text('Date of Purchase :'),
+                      padding: EdgeInsets.only(right: 5),
+                    ),
+                    Expanded(
+                      child: DateTimePicker(
+                        initialValue: '',
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2100),
+                        //dateHintText: 'Select Date', style: TextStyle(fontSize: 10),
+                        // dateLabelText: 'Date',
+                        onChanged: (val) => print(val),
+                        validator: (val) {
+                          print(val);
+                          return null;
+                        },
+                        onSaved: (val) => print(val),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                width: 420,
+                padding: EdgeInsets.all(2),
+                height: 30,
+                child: Row(
+                  children: [
+                    Padding(
+                      child: Text('Warranty Period:'),
+                      padding: EdgeInsets.only(right: 5),
+                    ),
+                    Expanded(
+                        child: TextField(
+                      controller: warrentyPeriod,
+                      autocorrect: true,
+                      decoration: InputDecoration(
+                          //hintText: 'Product Name',
+                          // hintStyle: hintFont,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4))),
+                    )),
+                  ],
+                ),
+              ),
+              Container(
+                width: 420,
+                padding: EdgeInsets.all(2),
+                height: 30,
+                child: Row(
+                  children: [
+                    Padding(
+                      child: Text('Purchased From:'),
+                      padding: EdgeInsets.only(right: 5),
+                    ),
+                    Expanded(
+                        child: TextField(
+                      controller: purFrom,
+                      autocorrect: true,
+                      decoration: InputDecoration(
+                          //hintText: 'Product Name',
+                          // hintStyle: hintFont,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4))),
+                    )),
+                  ],
+                ),
+              ),
+              Container(
+                width: 420,
+                padding: EdgeInsets.all(2),
+                height: 30,
+                child: Row(
+                  children: [
+                    Padding(
+                      child: Text('AMC Period:'),
+                      padding: EdgeInsets.only(right: 5),
+                    ),
+                    Expanded(
+                        child: TextField(
+                      controller: amcPeriod,
+                      autocorrect: true,
+                      decoration: InputDecoration(
+                          //hintText: 'Product Name',
+                          // hintStyle: hintFont,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4))),
+                    )),
+                  ],
+                ),
+              ),
+              Container(
+                width: 420,
+                padding: EdgeInsets.all(2),
+                height: 30,
+                child: Row(
+                  children: [
+                    Padding(
+                      child: Text('Price:'),
+                      padding: EdgeInsets.only(right: 5),
+                    ),
+                    Expanded(
+                        child: TextField(
+                      controller: price,
+                      autocorrect: true,
+                      decoration: InputDecoration(
+                          //hintText: 'Product Name',
+                          // hintStyle: hintFont,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4))),
+                    )),
+                  ],
+                ),
+              ),
+              Container(
+                width: 420,
+                padding: EdgeInsets.all(2),
+                height: 30,
+                child: Row(
+                  children: [
+                    Padding(
+                      child: Text('Price:'),
+                      padding: EdgeInsets.only(right: 5),
+                    ),
+                    Expanded(
+                        child: TextField(
+                      controller: epcification,
+                      autocorrect: true,
+                      decoration: InputDecoration(
+                          //hintText: 'Product Name',
+                          // hintStyle: hintFont,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4))),
+                    )),
+                  ],
+                ),
+              ),
+              Container(
+                child: ElevatedButton(
+                  onPressed: () => getItemAndNavigate(context),
+                  child: Text('Submit'),
+                ),
+              ),
+            ],
           ),
-          Container(
-            width: 420,
-            padding: EdgeInsets.all(2),
-            height: 30,
-            child: Row(
-              children: [
-                Padding(
-                  child: Text('Product Name:'),
-                  padding: EdgeInsets.only(right: 5),
-                ),
-                Expanded(
-                  child: TextField(
-                    controller: prodName,
-                    autocorrect: true,
-                    decoration: InputDecoration(
-                        //hintText: 'Product Name',
-                        //hintStyle: hintFont,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(4))),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            width: 420,
-            padding: EdgeInsets.all(2),
-            height: 30,
-            child: Row(
-              children: [
-                Padding(
-                  child: Text('Ref. No. in Stock Register:'),
-                  padding: EdgeInsets.only(right: 5),
-                ),
-                Expanded(
-                    child: TextField(
-                  controller: rfNo,
-                  autocorrect: true,
-                  decoration: InputDecoration(
-                      //hintText: 'Product Name',
-                      // hintStyle: hintFont,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4))),
-                )),
-              ],
-            ),
-          ),
-          Container(
-            width: 420,
-            padding: EdgeInsets.all(2),
-            height: 30,
-            child: Row(
-              children: [
-                Padding(
-                  child: Text('Product id:'),
-                  padding: EdgeInsets.only(right: 5),
-                ),
-                Expanded(
-                    child: TextField(
-                  controller: prodId,
-                  autocorrect: true,
-                  decoration: InputDecoration(
-                      //hintText: 'Product Name',
-                      // hintStyle: hintFont,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4))),
-                )),
-              ],
-            ),
-          ),
-          Container(
-            width: 420,
-            padding: EdgeInsets.all(2),
-            height: 30,
-            child: Row(
-              children: [
-                Padding(
-                  child: Text('Warranty Period:'),
-                  padding: EdgeInsets.only(right: 5),
-                ),
-                Expanded(
-                    child: TextField(
-                  controller: warrentyPeriod,
-                  autocorrect: true,
-                  decoration: InputDecoration(
-                      //hintText: 'Product Name',
-                      // hintStyle: hintFont,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4))),
-                )),
-              ],
-            ),
-          ),
-          Container(
-            width: 420,
-            padding: EdgeInsets.all(2),
-            height: 30,
-            child: Row(
-              children: [
-                Padding(
-                  child: Text('Purchased From:'),
-                  padding: EdgeInsets.only(right: 5),
-                ),
-                Expanded(
-                    child: TextField(
-                  controller: purFrom,
-                  autocorrect: true,
-                  decoration: InputDecoration(
-                      //hintText: 'Product Name',
-                      // hintStyle: hintFont,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4))),
-                )),
-              ],
-            ),
-          ),
-          Container(
-            width: 420,
-            padding: EdgeInsets.all(2),
-            height: 30,
-            child: Row(
-              children: [
-                Padding(
-                  child: Text('AMC Period:'),
-                  padding: EdgeInsets.only(right: 5),
-                ),
-                Expanded(
-                    child: TextField(
-                  controller: amcPeriod,
-                  autocorrect: true,
-                  decoration: InputDecoration(
-                      //hintText: 'Product Name',
-                      // hintStyle: hintFont,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4))),
-                )),
-              ],
-            ),
-          ),
-          Container(
-            width: 420,
-            padding: EdgeInsets.all(2),
-            height: 30,
-            child: Row(
-              children: [
-                Padding(
-                  child: Text('Price:'),
-                  padding: EdgeInsets.only(right: 5),
-                ),
-                Expanded(
-                    child: TextField(
-                  controller: price,
-                  autocorrect: true,
-                  decoration: InputDecoration(
-                      //hintText: 'Product Name',
-                      // hintStyle: hintFont,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4))),
-                )),
-              ],
-            ),
-          ),
-          Container(
-            width: 420,
-            padding: EdgeInsets.all(2),
-            height: 30,
-            child: Row(
-              children: [
-                Padding(
-                  child: Text('Price:'),
-                  padding: EdgeInsets.only(right: 5),
-                ),
-                Expanded(
-                    child: TextField(
-                  controller: epcification,
-                  autocorrect: true,
-                  decoration: InputDecoration(
-                      //hintText: 'Product Name',
-                      // hintStyle: hintFont,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4))),
-                )),
-              ],
-            ),
-          ),
-          Container(
-            child: ElevatedButton(
-              onPressed: () => getItemAndNavigate(context),
-              child: Text('Submit'),
-            ),
-          ),
-        ],
-      ),
-    ));
+        ));
   }
 }
 

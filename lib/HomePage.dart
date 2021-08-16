@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inventry/Drawer.dart';
 import 'package:inventry/ItemCategories.dart';
+import 'package:inventry/SearchDropdown.dart';
 import 'package:inventry/arun.dart';
 
 class HomePage extends StatelessWidget {
@@ -80,7 +81,7 @@ class HomePage extends StatelessWidget {
                           ),
                           InkWell(
                             child: MyContainer(
-                                myicon: Icons.add, tittle: 'add Items'),
+                                myicon: Icons.add, tittle: 'StockEntry'),
                             onTap: () {
                               Navigator.push(
                                 context,
@@ -93,12 +94,12 @@ class HomePage extends StatelessWidget {
                           InkWell(
                             child: MyContainer(
                                 myicon: Icons.verified_user,
-                                tittle: 'Vender List'),
+                                tittle: 'Search Cat'),
                             onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => DrawerMenu(),
+                                  builder: (context) => SearchCat(),
                                 ),
                               );
                             },
@@ -106,12 +107,12 @@ class HomePage extends StatelessWidget {
                           InkWell(
                             child: MyContainer(
                                 myicon: Icons.supervised_user_circle,
-                                tittle: 'Add Vender'),
+                                tittle: 'StockEntry'),
                             onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => DrawerMenu(),
+                                  builder: (context) => BillDetails(),
                                 ),
                               );
                             },
@@ -141,7 +142,7 @@ class HomePage extends StatelessWidget {
 class MyContainer extends StatelessWidget {
   final String tittle;
   final IconData myicon;
-  MyContainer({@required this.myicon, @required this.tittle});
+  MyContainer({this.myicon, @required this.tittle});
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inventry/HomePage.dart';
-import 'package:inventry/arun.dart';
+import 'package:inventry/SearchDropdown.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.brown),
-      home: BillDetails(),
+      home: HomePage(),
     );
   }
 }
